@@ -43,37 +43,51 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Agricultural/Natural Color Palette */
+  --background: #FAF8EE; /* Warm cream/off-white */
+  --foreground: #1E3228; /* Dark forest green */
+  --card: #FFFFFF; /* Pure white for cards */
+  --card-foreground: #1E3228; /* Dark forest green */
+  --popover: #FFFFFF;
+  --popover-foreground: #1E3228;
+  --primary: #1E3228; /* Dark forest green for primary elements */
+  --primary-foreground: #FFFFFF; /* White text on dark */
+  --secondary: #F0E6BE; /* Light muted yellow/cream */
+  --secondary-foreground: #1E3228; /* Dark text on light */
+  --muted: #E0E0E0; /* Light gray for muted elements */
+  --muted-foreground: #666666; /* Medium gray text */
+  --accent: #3CB478; /* Fresh green for highlights */
+  --accent-foreground: #FFFFFF; /* White text on green */
+  --destructive: #DC2626; /* Red for destructive actions */
+  --border: #DCEBCE; /* Light sage green border */
+  --input: #F5F5F5; /* Light gray input background */
+  --ring: #3CB478; /* Fresh green for focus rings */
+  
+  /* Additional agricultural theme colors */
+  --sage-light: #DCEBCE; /* Light sage green */
+  --sage-medium: #B4C8A9; /* Medium sage green */
+  --forest-dark: #1E3228; /* Dark forest green */
+  --forest-medium: #2A362F; /* Medium forest green */
+  --cream-light: #FAF8EE; /* Light cream */
+  --cream-medium: #F0E6BE; /* Medium cream */
+  --fresh-green: #3CB478; /* Fresh green accent */
+  --earth-brown: #8B4513; /* Earth brown */
+  
+  --chart-1: #3CB478; /* Fresh green */
+  --chart-2: #1E3228; /* Forest green */
+  --chart-3: #B4C8A9; /* Sage green */
+  --chart-4: #F0E6BE; /* Cream */
+  --chart-5: #8B4513; /* Earth brown */
+  
+  --sidebar: #FAF8EE;
+  --sidebar-foreground: #1E3228;
+  --sidebar-primary: #1E3228;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F0E6BE;
+  --sidebar-accent-foreground: #1E3228;
+  --sidebar-border: #DCEBCE;
+  --sidebar-ring: #3CB478;
 }
 
 .dark {
@@ -117,4 +131,72 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+}
+
+/* Agricultural Theme Custom Classes */
+.bg-agricultural-gradient {
+  background: linear-gradient(135deg, #DCEBCE 0%, #B4C8A9 100%);
+}
+
+.bg-warm-cream {
+  background-color: #FAF8EE;
+}
+
+.bg-forest-dark {
+  background-color: #1E3228;
+}
+
+.bg-fresh-green {
+  background-color: #3CB478;
+}
+
+.bg-sage-light {
+  background-color: #DCEBCE;
+}
+
+.text-forest-dark {
+  color: #1E3228;
+}
+
+.text-fresh-green {
+  color: #3CB478;
+}
+
+.text-earth-brown {
+  color: #8B4513;
+}
+
+.border-sage {
+  border-color: #DCEBCE;
+}
+
+.rounded-natural {
+  border-radius: 1rem;
+}
+
+.shadow-natural {
+  box-shadow: 0 4px 6px -1px rgba(30, 50, 40, 0.1), 0 2px 4px -1px rgba(30, 50, 40, 0.06);
 }

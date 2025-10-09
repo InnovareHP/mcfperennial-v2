@@ -1,25 +1,23 @@
 ---
 import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+import Layout from '../layouts/main.astro';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+// Section Components
+import Navbar from '../components/sections/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Featured from '../components/sections/Featured.astro';
+import Contract from '../components/sections/Contract.astro';
+import Team from '../components/sections/Team.astro';
+import Contact from '../components/sections/Contact.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
-
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+<Layout title="Mill Creek Farm Perennials">
+	<Navbar />
+	<Hero />
+	<About />
+	<Featured />
+	<Contract />
+	<Team />
+	<Contact />
+</Layout>

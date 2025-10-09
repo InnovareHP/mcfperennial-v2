@@ -1,0 +1,196 @@
+---
+// Hero Section Component with Carousel
+---
+
+<section id="hero" class="min-h-screen relative overflow-hidden">
+  <!-- Carousel Container -->
+  <div id="hero-carousel" class="relative w-full h-screen">
+    
+    <!-- Carousel Items -->
+    <div class="carousel-item active relative w-full h-full">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero/1.jpg');"></div>
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 h-full flex items-center justify-center">
+        <div class="text-center text-white max-w-4xl mx-auto px-4">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+            Plants Wholesale Growers
+          </h1>
+          <h2 class="text-xl md:text-2xl font-semibold mb-6 tracking-wide">
+            OVER 30 YEARS OF EXPERIENCE
+          </h2>
+          <p class="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            We specialize in perennials, shrubs, groundcovers, and ornamental grasses for the landscape industry, backed by decades of nursery production experience.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item relative w-full h-full">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero/2.jpg');"></div>
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 h-full flex items-center justify-center">
+        <div class="text-center text-white max-w-4xl mx-auto px-4">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+            Contract Grow Program
+          </h1>
+          <h2 class="text-xl md:text-2xl font-semibold mb-6 tracking-wide">
+            SUPPORTING YOUR LANDSCAPE PROJECTS
+          </h2>
+          <p class="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            We offer Grand Rapids and West Michigan contractors a contract grow program to ensure consistent plant availability tailored to your needs and timelines.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item relative w-full h-full">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero/3.jpg');"></div>
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 h-full flex items-center justify-center">
+        <div class="text-center text-white max-w-4xl mx-auto px-4">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+            Expanded Facilities and Inventory
+          </h1>
+          <h2 class="text-xl md:text-2xl font-semibold mb-6 tracking-wide">
+            BUILT FOR GROWTH
+          </h2>
+          <p class="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            We've added heated greenhouses and shrub cold frames to meet the growing demand for ground covers and more—ensuring quality and availability year-round.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-black rounded-full p-3 transition-all duration-300 hover:scale-110 shadow-lg">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    
+    <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-black rounded-full p-3 transition-all duration-300 hover:scale-110 shadow-lg">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <!-- Pagination Dots -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
+      <button class="pagination-dot active w-3 h-3 rounded-full bg-fresh-green transition-all duration-300"></button>
+      <button class="pagination-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition-all duration-300"></button>
+      <button class="pagination-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition-all duration-300"></button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Hero Carousel Functionality
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-item');
+  const dots = document.querySelectorAll('.pagination-dot');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  let autoplayInterval;
+
+  function showSlide(index) {
+    // Hide all slides
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    // Show current slide
+    if (slides[index]) {
+      slides[index].classList.add('active');
+    }
+    if (dots[index]) {
+      dots[index].classList.add('active');
+    }
+    
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    const next = (currentSlide + 1) % slides.length;
+    showSlide(next);
+  }
+
+  function prevSlide() {
+    const prev = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(prev);
+  }
+
+  function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  // Event Listeners
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      stopAutoplay();
+      startAutoplay();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      stopAutoplay();
+      startAutoplay();
+    });
+  }
+
+  // Pagination dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      showSlide(index);
+      stopAutoplay();
+      startAutoplay();
+    });
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+      stopAutoplay();
+      startAutoplay();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+      stopAutoplay();
+      startAutoplay();
+    }
+  });
+
+  // Pause autoplay on hover
+  const carousel = document.getElementById('hero-carousel');
+  if (carousel) {
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+  }
+
+  // Initialize carousel
+  showSlide(0);
+  startAutoplay();
+</script>
+
+<style>
+  .carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .carousel-item.active {
+    opacity: 1;
+  }
+
+  .pagination-dot.active {
+    background-color: #059669 !important;
+  }
+</style>

@@ -1,0 +1,313 @@
+---
+// Navbar Section Component
+---
+
+<nav id="navbar" class="fixed top-0 w-full bg-transparent z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="#" class="flex items-center">
+          <img id="navbar-logo" src="/images/logos/logo-light.png" alt="Company Logo" class="h-12 md:h-16 w-auto transition-all duration-150" />
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-2">
+          <a href="#hero" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
+            Home
+          </a>
+          <a href="#about" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
+            About
+          </a>
+          <a href="#featured" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
+            Featured
+          </a>
+          <a href="#contract" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
+            Contract
+          </a>
+          <a href="#team" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
+            Team
+          </a>
+          <a href="#contact" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
+            Contact
+          </a>
+        </div>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button 
+          id="mobile-menu-button" 
+          type="button" 
+          class="text-white hover:text-fresh-green focus:outline-none focus:text-fresh-green transition-colors duration-300 p-2 rounded-lg hover:bg-white/10 focus:bg-white/10 active:bg-white/20 touch-manipulation"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <svg id="menu-icon" class="h-6 w-6 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="close-icon" class="h-6 w-6 hidden transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-300 shadow-2xl absolute top-full left-0 right-0 z-50" style="background-color: white !important;">
+      <div class="px-4 pt-3 pb-4 space-y-1" style="background-color: white !important;">
+        <a href="#hero" class="mobile-nav-link block px-4 py-3 text-base font-medium transition-all duration-300 rounded-md" style="color: #1f2937 !important; background-color: white !important;">
+          Home
+        </a>
+        <a href="#about" class="mobile-nav-link block px-4 py-3 text-base font-medium transition-all duration-300 rounded-md" style="color: #1f2937 !important; background-color: white !important;">
+          About
+        </a>
+        <a href="#featured" class="mobile-nav-link block px-4 py-3 text-base font-medium transition-all duration-300 rounded-md" style="color: #1f2937 !important; background-color: white !important;">
+          Featured
+        </a>
+        <a href="#contract" class="mobile-nav-link block px-4 py-3 text-base font-medium transition-all duration-300 rounded-md" style="color: #1f2937 !important; background-color: white !important;">
+          Contract
+        </a>
+        <a href="#team" class="mobile-nav-link block px-4 py-3 text-base font-medium transition-all duration-300 rounded-md" style="color: #1f2937 !important; background-color: white !important;">
+          Team
+        </a>
+        <a href="#contact" class="mobile-nav-link block px-4 py-3 text-base font-medium transition-all duration-300 rounded-md" style="color: #1f2937 !important; background-color: white !important;">
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu functionality
+  function initMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    if (mobileMenuButton && mobileMenu) {
+      // Function to show mobile menu
+      function showMobileMenu() {
+        mobileMenu.classList.remove('hidden');
+        if (menuIcon) menuIcon.classList.add('hidden');
+        if (closeIcon) closeIcon.classList.remove('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'true');
+        
+        // Ensure mobile menu has proper styling regardless of navbar state
+        mobileMenu.style.backgroundColor = 'white';
+        mobileMenu.style.color = '#1f2937';
+        
+        // Apply styling to all mobile nav links
+        const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+        mobileLinks.forEach(link => {
+          link.style.color = '#1f2937';
+          link.style.backgroundColor = 'white';
+          
+          // Add hover effects
+          link.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#059669';
+            this.style.color = 'white';
+          });
+          
+          link.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = 'white';
+            this.style.color = '#1f2937';
+          });
+        });
+      }
+      
+      // Function to hide mobile menu
+      function hideMobileMenu() {
+        mobileMenu.classList.add('hidden');
+        if (menuIcon) menuIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
+      
+      // Toggle mobile menu on button click
+      mobileMenuButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isHidden = mobileMenu.classList.contains('hidden');
+        
+        if (isHidden) {
+          showMobileMenu();
+        } else {
+          hideMobileMenu();
+        }
+      });
+      
+      // Close mobile menu when clicking on a link
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          hideMobileMenu();
+        });
+      });
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+          hideMobileMenu();
+        }
+      });
+      
+      // Close mobile menu on escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          hideMobileMenu();
+        }
+      });
+    }
+  }
+  
+  // Navbar scroll effect and active section highlighting
+  function handleNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    const navLinks = navbar.querySelectorAll('a[href^="#"]');
+    const mobileButton = navbar.querySelector('#mobile-menu-button');
+    const navbarLogo = document.getElementById('navbar-logo');
+    const scrolled = window.scrollY > 50;
+    
+    // Update active section based on scroll position
+    updateActiveSection();
+    
+    if (scrolled) {
+      // Add scrolled styles
+      navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-natural');
+      navbar.classList.remove('bg-transparent');
+      
+      // Switch to regular logo when scrolled and make it larger
+      if (navbarLogo) {
+        navbarLogo.src = '/images/logos/logo.png';
+        // Make logo larger when scrolled (about 20% bigger than h-20)
+        navbarLogo.classList.remove('h-12', 'md:h-16');
+        navbarLogo.classList.add('h-24');
+      }
+      
+      // Update navigation links for scrolled state
+      navLinks.forEach(link => {
+        link.classList.remove('text-white', 'hover:text-fresh-green', 'active:bg-fresh-green', 'active:text-white');
+        link.classList.add('text-forest-dark', 'hover:text-fresh-green', 'active:bg-fresh-green', 'active:text-white');
+      });
+      
+      // Update mobile button for scrolled state
+      if (mobileButton) {
+        mobileButton.classList.remove('text-white', 'hover:text-fresh-green');
+        mobileButton.classList.add('text-forest-dark', 'hover:text-fresh-green');
+      }
+    } else {
+      // Remove scrolled styles
+      navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-natural');
+      navbar.classList.add('bg-transparent');
+      
+      // Switch to light logo when at top and make it smaller
+      if (navbarLogo) {
+        navbarLogo.src = '/images/logos/logo-light.png';
+        navbarLogo.classList.remove('h-20');
+        navbarLogo.classList.add('h-12', 'md:h-16');
+      }
+      
+      // Update navigation links for transparent state
+      navLinks.forEach(link => {
+        link.classList.remove('text-forest-dark', 'hover:text-fresh-green', 'active:bg-fresh-green', 'active:text-white');
+        link.classList.add('text-white', 'hover:text-fresh-green', 'active:bg-fresh-green', 'active:text-white');
+      });
+      
+      // Update mobile button for transparent state
+      if (mobileButton) {
+        mobileButton.classList.remove('text-forest-dark', 'hover:text-fresh-green');
+        mobileButton.classList.add('text-white', 'hover:text-fresh-green');
+      }
+    }
+    
+    // Ensure mobile menu is always visible when open, regardless of scroll position
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      // Mobile menu is open, ensure it has proper styling
+      mobileMenu.classList.add('bg-white/98', 'backdrop-blur-md', 'shadow-xl');
+    }
+  }
+
+  // Function to update active section based on scroll position
+  function updateActiveSection() {
+    const sections = ['hero', 'about', 'featured', 'contract', 'team', 'contact'];
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    
+    // Remove active class from all links
+    navLinks.forEach(link => {
+      link.classList.remove('bg-fresh-green', 'text-white', 'shadow-lg');
+    });
+    
+    // Find the current section
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 100; // Offset for better detection
+    
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top + window.scrollY;
+        const elementBottom = elementTop + rect.height;
+        
+        if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+          currentSection = section;
+          break;
+        }
+      }
+    }
+    
+    // If no section is found, default to hero
+    if (!currentSection) {
+      currentSection = 'hero';
+    }
+    
+    // Add active class to current section link
+    const activeLink = document.querySelector(`a[href="#${currentSection}"]`);
+    if (activeLink) {
+      activeLink.classList.add('bg-fresh-green', 'text-white', 'shadow-lg');
+    }
+  }
+
+  // Handle responsive behavior
+  function handleResponsive() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    
+    // Close mobile menu on larger screens
+    if (window.innerWidth >= 768) { // md breakpoint
+      if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+        if (menuIcon) menuIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+        if (mobileMenuButton) mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
+    }
+  }
+  
+  // Initialize everything
+  function initNavbar() {
+    initMobileMenu();
+    handleNavbarScroll();
+    handleResponsive();
+  }
+  
+  // Add event listeners
+  window.addEventListener('scroll', handleNavbarScroll);
+  window.addEventListener('resize', handleResponsive);
+  
+  // Initialize immediately
+  initNavbar();
+  
+  // Also initialize on DOM ready as backup
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavbar);
+  }
+</script>
