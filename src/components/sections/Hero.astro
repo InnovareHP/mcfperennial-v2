@@ -61,14 +61,14 @@
       </div>
     </div>
 
-    <!-- Navigation Arrows -->
-    <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-black rounded-full p-3 transition-all duration-300 hover:scale-110 shadow-lg">
+    <!-- Navigation Arrows - Hidden on tablet and mobile -->
+    <button id="prev-btn" class="hidden lg:block absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-black rounded-full p-3 transition-all duration-300 hover:scale-110 shadow-lg">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
     </button>
     
-    <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-black rounded-full p-3 transition-all duration-300 hover:scale-110 shadow-lg">
+    <button id="next-btn" class="hidden lg:block absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-black rounded-full p-3 transition-all duration-300 hover:scale-110 shadow-lg">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
       </svg>
@@ -91,6 +91,11 @@
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
   let autoplayInterval;
+  
+  // Touch gesture variables
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isTouchDevice = false;
 
   function showSlide(index) {
     // Hide all slides
@@ -165,11 +170,43 @@
     }
   });
 
-  // Pause autoplay on hover
+  // Touch gesture functions
+  function handleTouchStart(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    isTouchDevice = true;
+  }
+
+  function handleTouchEnd(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }
+
+  function handleSwipe() {
+    const swipeThreshold = 50; // Minimum distance for swipe
+    const swipeDistance = touchStartX - touchEndX;
+    
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        // Swipe left - next slide
+        nextSlide();
+      } else {
+        // Swipe right - previous slide
+        prevSlide();
+      }
+      stopAutoplay();
+      startAutoplay();
+    }
+  }
+
+  // Pause autoplay on hover (desktop only)
   const carousel = document.getElementById('hero-carousel');
   if (carousel) {
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', startAutoplay);
+    
+    // Touch events for mobile/tablet
+    carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
+    carousel.addEventListener('touchend', handleTouchEnd, { passive: true });
   }
 
   // Initialize carousel
