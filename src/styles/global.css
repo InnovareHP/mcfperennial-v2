@@ -132,9 +132,19 @@
     @apply bg-background text-foreground;
   }
   
-  /* Smooth scrolling for anchor links */
+  /* Enhanced smooth scrolling */
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* Ensure smooth scrolling works on all elements */
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
   }
   
   /* Custom scrollbar */
