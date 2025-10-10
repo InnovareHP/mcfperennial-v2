@@ -15,23 +15,35 @@
       <!-- Navigation Links -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-2">
-          <a href="#hero" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
-            Home
+          <a href="#hero" class="nav-link text-white hover:text-fresh-green px-6 py-3 text-base font-medium transition-all duration-300 relative group">
+            <span class="relative z-10">Home</span>
+            <div class="absolute inset-0 bg-fresh-green/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
-          <a href="#about" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
-            About
+          <a href="#about" class="nav-link text-white hover:text-fresh-green px-6 py-3 text-base font-medium transition-all duration-300 relative group">
+            <span class="relative z-10">About</span>
+            <div class="absolute inset-0 bg-fresh-green/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
-          <a href="#featured" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
-            Featured
+          <a href="#featured" class="nav-link text-white hover:text-fresh-green px-6 py-3 text-base font-medium transition-all duration-300 relative group">
+            <span class="relative z-10">Featured</span>
+            <div class="absolute inset-0 bg-fresh-green/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
-          <a href="#contract" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
-            Contract
+          <a href="#contract" class="nav-link text-white hover:text-fresh-green px-6 py-3 text-base font-medium transition-all duration-300 relative group">
+            <span class="relative z-10">Contract</span>
+            <div class="absolute inset-0 bg-fresh-green/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
-          <a href="#team" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
-            Team
+          <a href="#team" class="nav-link text-white hover:text-fresh-green px-6 py-3 text-base font-medium transition-all duration-300 relative group">
+            <span class="relative z-10">Team</span>
+            <div class="absolute inset-0 bg-fresh-green/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
-          <a href="#contact" class="text-white hover:text-fresh-green active:bg-fresh-green active:text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-natural">
-            Contact
+          <a href="#contact" class="nav-link text-white hover:text-fresh-green px-6 py-3 text-base font-medium transition-all duration-300 relative group">
+            <span class="relative z-10">Contact</span>
+            <div class="absolute inset-0 bg-fresh-green/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
         </div>
       </div>
@@ -241,7 +253,7 @@
     
     // Remove active class from all links
     navLinks.forEach(link => {
-      link.classList.remove('bg-fresh-green', 'text-white', 'shadow-lg');
+      link.classList.remove('bg-fresh-green', 'text-white', 'shadow-lg', 'nav-active');
     });
     
     // Find the current section using Intersection Observer approach
@@ -316,7 +328,7 @@
     // Add active class to current section link
     const activeLink = document.querySelector(`a[href="#${currentSection}"]`);
     if (activeLink) {
-      activeLink.classList.add('bg-fresh-green', 'text-white', 'shadow-lg');
+      activeLink.classList.add('nav-active');
     }
   }
 
@@ -396,3 +408,79 @@
     document.addEventListener('DOMContentLoaded', initNavbar);
   }
 </script>
+
+<style>
+  /* Modern navbar highlighting styles */
+  .nav-link {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+    border-radius: 8px;
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    border-radius: 1px;
+    transform: translateX(-50%);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+  }
+  
+  .nav-link:hover::before {
+    transform: scale(1);
+  }
+  
+  .nav-link:hover::after {
+    width: 32px;
+  }
+  
+  .nav-link.nav-active::before {
+    transform: scale(1);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%);
+  }
+  
+  .nav-link.nav-active::after {
+    width: 32px;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+  }
+  
+  .nav-link.nav-active {
+    color: #22c55e !important;
+    text-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+  }
+  
+  /* Smooth transitions for all states */
+  .nav-link span {
+    position: relative;
+    z-index: 3;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .nav-link:hover span {
+    transform: translateY(-1px);
+  }
+  
+  .nav-link.nav-active span {
+    transform: translateY(-1px);
+    font-weight: 600;
+  }
+</style>
