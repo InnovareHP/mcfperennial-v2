@@ -7,7 +7,7 @@
     <div class="flex justify-between items-center h-20">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <a href="#" class="flex items-center">
+        <a href="#" id="logo-link" class="flex items-center focus:outline-none">
           <img id="navbar-logo" src="/images/logos/logo-light.png" alt="Company Logo" class="h-12 md:h-16 w-auto transition-all duration-150" />
         </a>
       </div>
@@ -295,6 +295,7 @@
   // Smooth scroll with offset for navigation links
   function initSmoothScroll() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
+    const logoLink = document.getElementById('logo-link');
     
     navLinks.forEach(link => {
       link.addEventListener('click', function(e) {
@@ -314,6 +315,18 @@
         }
       });
     });
+    
+    // Logo click to scroll to top
+    if (logoLink) {
+      logoLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
   }
 
   // Initialize everything

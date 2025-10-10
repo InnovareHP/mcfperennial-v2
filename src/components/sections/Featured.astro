@@ -1,66 +1,144 @@
 ---
-// Featured Section Component
+// Featured Plants Section Component
 ---
 
-<section id="featured" class="py-20 bg-sage-light/30">
+<section id="featured" class="py-20 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold text-forest-dark mb-4">
-        Featured Agricultural Solutions
+        Featured Plants
       </h2>
       <p class="text-xl text-forest-dark/80 max-w-3xl mx-auto">
-        Discover some of our most successful farming projects and the impact they've made on agricultural operations.
+        Explore our top selections of hardy perennials, ornamental grasses, and shrubs, perfect for professional landscapes.
       </p>
     </div>
     
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Featured Project 1 -->
-      <div class="bg-white rounded-natural shadow-natural overflow-hidden hover:shadow-xl transition-shadow border border-sage">
-        <div class="bg-sage-light h-48 flex items-center justify-center">
-          <span class="text-forest-dark/60">Smart Irrigation System</span>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <!-- Plant 1: Aralia (Sun King) -->
+      <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 opacity-0 transform translate-y-8">
+        <div class="h-64 bg-cover bg-center" style="background-image: url('/images/featured/plant-1.jpg');">
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-semibold text-forest-dark mb-2">Smart Irrigation System</h3>
-          <p class="text-forest-dark/80 mb-4">
-            An intelligent irrigation solution that increased crop yield by 40% while reducing water usage by 25%.
+          <h3 class="text-xl font-bold text-forest-dark mb-2">Aralia (Sun King)</h3>
+          <p class="text-forest-dark/80 text-sm leading-relaxed">
+            Fast-growing perennial with lush tropical foliage. Thrives in partial shade.
           </p>
-          <a href="#" class="text-fresh-green font-semibold hover:text-fresh-green/80 flex items-center">
-            View Project <span class="ml-1">→</span>
-          </a>
         </div>
       </div>
       
-      <!-- Featured Project 2 -->
-      <div class="bg-white rounded-natural shadow-natural overflow-hidden hover:shadow-xl transition-shadow border border-sage">
-        <div class="bg-sage-light h-48 flex items-center justify-center">
-          <span class="text-forest-dark/60">Crop Monitoring App</span>
+      <!-- Plant 2: Schizachyrium (Little Bluestem) -->
+      <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 opacity-0 transform translate-y-8">
+        <div class="h-64 bg-cover bg-center" style="background-image: url('/images/featured/plant-2.jpg');">
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-semibold text-forest-dark mb-2">Crop Monitoring App</h3>
-          <p class="text-forest-dark/80 mb-4">
-            A comprehensive mobile application that helps farmers track crop health and optimize farming practices.
+          <h3 class="text-xl font-bold text-forest-dark mb-2">Schizachyrium (Little Bluestem)</h3>
+          <p class="text-forest-dark/80 text-sm leading-relaxed">
+            Native grass with blue summer foliage and rich burgundy fall color.
           </p>
-          <a href="#" class="text-fresh-green font-semibold hover:text-fresh-green/80 flex items-center">
-            View Project <span class="ml-1">→</span>
-          </a>
         </div>
       </div>
       
-      <!-- Featured Project 3 -->
-      <div class="bg-white rounded-natural shadow-natural overflow-hidden hover:shadow-xl transition-shadow border border-sage">
-        <div class="bg-sage-light h-48 flex items-center justify-center">
-          <span class="text-forest-dark/60">Farm Management Platform</span>
+      <!-- Plant 3: Helleborus (Lenten Rose) -->
+      <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 opacity-0 transform translate-y-8">
+        <div class="h-64 bg-cover bg-center" style="background-image: url('/images/featured/plant-3.jpg');">
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-semibold text-forest-dark mb-2">Farm Management Platform</h3>
-          <p class="text-forest-dark/80 mb-4">
-            A scalable farm management system that handles multiple operations with 99.9% uptime and real-time monitoring.
+          <h3 class="text-xl font-bold text-forest-dark mb-2">Helleborus (Lenten Rose)</h3>
+          <p class="text-forest-dark/80 text-sm leading-relaxed">
+            Evergreen perennial valued for early spring blooms and dense foliage.
           </p>
-          <a href="#" class="text-fresh-green font-semibold hover:text-fresh-green/80 flex items-center">
-            View Project <span class="ml-1">→</span>
-          </a>
+        </div>
+      </div>
+      
+      <!-- Plant 4: Amsonia (Blue Star) -->
+      <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 opacity-0 transform translate-y-8">
+        <div class="h-64 bg-cover bg-center" style="background-image: url('/images/featured/plant-4.jpg');">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-forest-dark mb-2">Amsonia (Blue Star)</h3>
+          <p class="text-forest-dark/80 text-sm leading-relaxed">
+            Clump-forming native with starry blue flowers, great for woodland edges.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Plant 5: Baptisia (Blue Indigo) -->
+      <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 opacity-0 transform translate-y-8">
+        <div class="h-64 bg-cover bg-center" style="background-image: url('/images/featured/plant-5.jpg');">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-forest-dark mb-2">Baptisia (Blue Indigo)</h3>
+          <p class="text-forest-dark/80 text-sm leading-relaxed">
+            Large, drought-tolerant perennial with showy late spring flowers.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Plant 6: Echinacea (Coneflower) -->
+      <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 opacity-0 transform translate-y-8">
+        <div class="h-64 bg-cover bg-center" style="background-image: url('/images/featured/plant-6.jpg');">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-forest-dark mb-2">Echinacea (Coneflower)</h3>
+          <p class="text-forest-dark/80 text-sm leading-relaxed">
+            Colorful, drought-resistant perennials ideal for sunny gardens.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Plant 7: Epimedium (Barrenwort) -->
+      <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 opacity-0 transform translate-y-8">
+        <div class="h-64 bg-cover bg-center" style="background-image: url('/images/featured/plant-7.jpg');">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-forest-dark mb-2">Epimedium (Barrenwort)</h3>
+          <p class="text-forest-dark/80 text-sm leading-relaxed">
+            Shade-tolerant groundcover with delicate early spring blooms.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Fade-in animation for plant cards
+  function initFadeInAnimation() {
+    const plantCards = document.querySelectorAll('.plant-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Add staggered delay for each card
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 150); // 150ms delay between each card
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    plantCards.forEach(card => {
+      observer.observe(card);
+    });
+  }
+  
+  // Initialize animation when DOM is ready
+  document.addEventListener('DOMContentLoaded', initFadeInAnimation);
+  
+  // Also initialize immediately in case DOMContentLoaded already fired
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFadeInAnimation);
+  } else {
+    initFadeInAnimation();
+  }
+</script>
+
+<style>
+  .plant-card {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+</style>
