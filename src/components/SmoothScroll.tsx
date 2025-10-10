@@ -84,10 +84,16 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       const currentIndex = sections.indexOf(currentSection);
       let targetIndex = currentIndex;
       
+      // Only move one section at a time
       if (direction === 'down') {
         targetIndex = Math.min(currentIndex + 1, sections.length - 1);
       } else {
         targetIndex = Math.max(currentIndex - 1, 0);
+      }
+      
+      // Prevent scrolling if already at the target section
+      if (targetIndex === currentIndex) {
+        return;
       }
       
       const targetSection = sections[targetIndex];
@@ -121,7 +127,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       
       scrollTimeout = setTimeout(() => {
         isScrolling = false;
-      }, 800); // Longer timeout to match navbar section jumping timing
+      }, 100); // Much shorter timeout for immediate response to single scroll
     };
 
     // Add wheel event listener
