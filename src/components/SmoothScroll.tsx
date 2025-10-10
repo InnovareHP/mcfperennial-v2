@@ -23,6 +23,8 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     // Section-based smooth scrolling like navbar
     let isScrolling = false;
     let scrollTimeout: NodeJS.Timeout;
+    let lastScrollTime = 0;
+    let scrollAccumulator = 0;
     const sections = ['hero', 'about', 'featured', 'contract', 'team', 'contact'];
 
     const getCurrentSection = () => {
@@ -114,20 +116,35 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
       
-      if (isScrolling) return;
-      
-      isScrolling = true;
-      clearTimeout(scrollTimeout);
-      
+      const now = Date.now();
       const delta = e.deltaY;
-      const direction = delta > 0 ? 'down' : 'up';
       
-      // Scroll to next/previous section like navbar
-      scrollToSection('', direction);
+      // Reset accumulator if too much time has passed
+      if (now - lastScrollTime > 200) {
+        scrollAccumulator = 0;
+      }
       
-      scrollTimeout = setTimeout(() => {
-        isScrolling = false;
-      }, 100); // Much shorter timeout for immediate response to single scroll
+      // Accumulate scroll delta
+      scrollAccumulator += delta;
+      lastScrollTime = now;
+      
+      // Only trigger if we have enough scroll accumulation and not currently scrolling
+      if (Math.abs(scrollAccumulator) > 50 && !isScrolling) {
+        isScrolling = true;
+        clearTimeout(scrollTimeout);
+        
+        const direction = scrollAccumulator > 0 ? 'down' : 'up';
+        
+        // Scroll to next/previous section like navbar
+        scrollToSection('', direction);
+        
+        // Reset accumulator
+        scrollAccumulator = 0;
+        
+        scrollTimeout = setTimeout(() => {
+          isScrolling = false;
+        }, 800); // Longer timeout to prevent rapid scrolling
+      }
     };
 
     // Add wheel event listener
