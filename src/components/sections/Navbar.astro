@@ -8,7 +8,7 @@
       <!-- Logo -->
       <div class="flex-shrink-0">
         <a href="#" id="logo-link" class="flex items-center focus:outline-none">
-          <img id="navbar-logo" src="/images/logos/logo-light.png" alt="Company Logo" class="h-12 md:h-16 w-auto transition-all duration-150" />
+          <img id="navbar-logo" src="/images/logos/logo-light.png" alt="Company Logo" class="h-8 sm:h-10 md:h-12 lg:h-16 w-auto transition-all duration-150" />
         </a>
       </div>
       
@@ -197,9 +197,9 @@
       // Switch to regular logo when scrolled and make it larger
       if (navbarLogo) {
         navbarLogo.src = '/images/logos/logo.png';
-        // Make logo larger when scrolled (about 20% bigger than h-20)
-        navbarLogo.classList.remove('h-12', 'md:h-16');
-        navbarLogo.classList.add('h-24');
+        // Make logo larger when scrolled with responsive sizing
+        navbarLogo.classList.remove('h-8', 'sm:h-10', 'md:h-12', 'lg:h-16');
+        navbarLogo.classList.add('h-12', 'sm:h-14', 'md:h-16', 'lg:h-20');
       }
       
       // Update navigation links for scrolled state
@@ -221,8 +221,8 @@
       // Switch to light logo when at top and make it smaller
       if (navbarLogo) {
         navbarLogo.src = '/images/logos/logo-light.png';
-        navbarLogo.classList.remove('h-20');
-        navbarLogo.classList.add('h-12', 'md:h-16');
+        navbarLogo.classList.remove('h-12', 'sm:h-14', 'md:h-16', 'lg:h-20');
+        navbarLogo.classList.add('h-8', 'sm:h-10', 'md:h-12', 'lg:h-16');
       }
       
       // Update navigation links for transparent state
