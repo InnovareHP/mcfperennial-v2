@@ -5,29 +5,104 @@
 <section id="contract" class="py-20 bg-orange-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold text-forest-dark mb-6">
+      <div class="slide-in-left">
+        <h2 class="text-3xl md:text-4xl font-bold text-forest-dark mb-6 fade-in-slide-up">
           Contract Grow Program
         </h2>
         <div class="space-y-6 text-forest-dark text-justify">
-          <p class="text-lg leading-relaxed">
+          <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.2s;">
             Launched in 2008, our Contract Grow Program has evolved exponentially through the years. It has been strategically implemented in response to the pressing need relayed by our partners in the industry to meet the increasing demand for guaranteed supplies of popular varieties of plants.
           </p>
           
-          <p class="text-lg leading-relaxed">
+          <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.4s;">
             When COVID-19 hit in 2019, it became more difficult to obtain inventories because of the availability of starter plants and finished products. During this time, our landscape contractors have relied on our expertise and resources to maximize opportunities by providing just in time inventories for their projects. In the process, not only our CGP ensures availability of supplies but it also saves our customers substantial amounts of money.
           </p>
           
-          <p class="text-lg leading-relaxed">
+          <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.6s;">
             For conversations on our CGP, please give us a call and schedule an appointment with us. We would love to hear from you.
           </p>
         </div>
       </div>
       
-      <div class="relative">
-        <div class="bg-cover bg-center bg-no-repeat rounded-lg shadow-lg h-96" style="background-image: url('/images/contract/contract.png');">
+      <div class="relative slide-in-right">
+        <div class="bg-cover bg-center bg-no-repeat rounded-lg shadow-lg h-96 fade-in-slide-up" style="background-image: url('/images/contract/contract.png'); animation-delay: 0.3s;">
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Intersection Observer for slide animations
+  function initSlideAnimations() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slide-in');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all slide-in elements
+    const slideElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in-slide-up');
+    slideElements.forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Initialize animations when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSlideAnimations);
+  } else {
+    initSlideAnimations();
+  }
+</script>
+
+<style>
+  /* Slide in from left animation */
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .slide-in-left.animate-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Slide in from right animation */
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .slide-in-right.animate-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Fade in slide up animation for text elements */
+  .fade-in-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in-slide-up.animate-slide-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered animation delays for text elements */
+  .fade-in-slide-up:nth-child(1) { animation-delay: 0s; }
+  .fade-in-slide-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in-slide-up:nth-child(3) { animation-delay: 0.4s; }
+  .fade-in-slide-up:nth-child(4) { animation-delay: 0.6s; }
+</style>

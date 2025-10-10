@@ -5,17 +5,17 @@
 <section id="team" class="py-20 bg-stone-100">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-forest-dark mb-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-forest-dark mb-4 fade-in-slide-up">
         Meet Our Agricultural Team
       </h2>
-      <p class="text-xl text-forest-dark/80 max-w-3xl mx-auto">
+      <p class="text-xl text-forest-dark/80 max-w-3xl mx-auto fade-in-slide-up">
         Our passionate team of experts brings over fifty years of combined experience in nursery operations, delivering quality service and products to our partners.
       </p>
     </div>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- Roy Gingrich, Owner/Founder -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center border border-gray-200 hover:shadow-xl transition-shadow">
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center border border-gray-200 hover:shadow-xl transition-shadow team-card">
         <div class="h-80 bg-cover bg-center relative" style="background-image: url('/images/team/team-1.png');">
           <div class="absolute inset-0 bg-black/20"></div>
         </div>
@@ -28,22 +28,8 @@
         </div>
       </div>
       
-      <!-- Adam Schaafsma, Production Manager -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center border border-gray-200 hover:shadow-xl transition-shadow">
-        <div class="h-80 bg-cover bg-center relative" style="background-image: url('/images/team/team-3.png');">
-          <div class="absolute inset-0 bg-black/20"></div>
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold text-forest-dark mb-2">Adam Schaafsma</h3>
-          <p class="text-fresh-green font-medium mb-3">Production Manager</p>
-          <p class="text-forest-dark/80 text-sm">
-            Oversees daily production operations, ensuring quality and efficiency in our nursery growing processes.
-          </p>
-        </div>
-      </div>
-      
       <!-- Autumn Rose, Nursery Manager -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center border border-gray-200 hover:shadow-xl transition-shadow">
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center border border-gray-200 hover:shadow-xl transition-shadow team-card">
         <div class="h-80 bg-cover bg-center relative" style="background-image: url('/images/team/team-4.png');">
           <div class="absolute inset-0 bg-black/20"></div>
         </div>
@@ -55,6 +41,138 @@
           </p>
         </div>
       </div>
+      
+      <!-- Empty Card Placeholder -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center border border-gray-200 hover:shadow-xl transition-shadow team-card">
+        <div class="h-80 bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center">
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 bg-stone-300 rounded-full flex items-center justify-center">
+              <svg class="w-8 h-8 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+            </div>
+            <p class="text-stone-500 text-sm font-medium">Join Our Team</p>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-stone-400 mb-2">Future Team Member</h3>
+          <p class="text-stone-400 font-medium mb-3">Position Available</p>
+          <p class="text-stone-400 text-sm">
+            We're always looking for passionate individuals to join our growing team.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Intersection Observer for team animations with sequential timing
+  function initTeamAnimations() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    let hasAnimated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true;
+          
+          // Animate title and description first
+          const title = document.querySelector('#team h2.fade-in-slide-up');
+          const description = document.querySelector('#team p.fade-in-slide-up');
+          
+          if (title) {
+            title.classList.add('animate-fade-in-slide-up');
+          }
+          
+          if (description) {
+            setTimeout(() => {
+              description.classList.add('animate-fade-in-slide-up');
+            }, 200);
+          }
+          
+          // Animate team cards one by one
+          const teamCards = document.querySelectorAll('.team-card');
+          teamCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('animate-fade-in-slide-up');
+            }, 500 + (index * 500)); // 0.5s + 0.5s between each card
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observe the team section
+    const teamSection = document.querySelector('#team');
+    if (teamSection) {
+      observer.observe(teamSection);
+    }
+  }
+
+  // Initialize animations when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTeamAnimations);
+  } else {
+    initTeamAnimations();
+  }
+</script>
+
+<style>
+  /* Modern fade in slide up animation */
+  .fade-in-slide-up {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in-slide-up.animate-fade-in-slide-up {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Team card animations */
+  .team-card {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .team-card.animate-fade-in-slide-up {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Enhanced team card hover effects */
+  .team-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Modern animation effects */
+  .team-card .h-80 {
+    transition: all 0.3s ease;
+  }
+
+  .team-card:hover .h-80 {
+    transform: scale(1.05);
+  }
+
+  /* Smooth text animations */
+  .team-card h3,
+  .team-card p {
+    transition: all 0.3s ease;
+  }
+
+  .team-card:hover h3 {
+    color: #22c55e;
+    transform: translateY(-2px);
+  }
+
+  .team-card:hover p {
+    transform: translateY(-1px);
+  }
+</style>

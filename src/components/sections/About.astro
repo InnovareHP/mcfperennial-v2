@@ -5,28 +5,80 @@
 <section id="about" class="py-20 bg-amber-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-fresh-green mb-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-fresh-green mb-4 fade-in-slide-up">
         About
       </h2>
-      <h3 class="text-4xl md:text-5xl font-bold text-forest-dark mb-8">
+      <h3 class="text-4xl md:text-5xl font-bold text-forest-dark mb-8 fade-in-slide-up" style="animation-delay: 0.2s;">
         Mill Creek Farm Perennials
       </h3>
     </div>
     
     <div class="max-w-4xl mx-auto">
       <div class="space-y-6 text-forest-dark text-justify">
-        <p class="text-lg leading-relaxed">
+        <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.4s;">
           With over 30 years of experienced nursery production, we are able to offer our landscape contractors in Grand Rapids and nearby cities in West Michigan the opportunity to take part in our contract grow program.
         </p>
         
-        <p class="text-lg leading-relaxed">
+        <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.6s;">
           Ground covers continue to prove to be some of our most popular inventories year after year. Because of it, we have increased our inventories and improved our nursery growing capabilities. We have also upgraded our facilities with the addition of two heated greenhouses on top of the four we already have. Two shrub cold frames were also built as part of the expansion plan bringing it to a total of seventeen.
         </p>
         
-        <p class="text-lg leading-relaxed">
+        <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.8s;">
           Whether you're a landscape contractor, a wholesale reseller or a garden store retailer, we would love to partner with you. We have a wide variety of selection to support your growing business needs.
         </p>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Intersection Observer for fade-in animations
+  function initFadeInAnimations() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-slide-up');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    const fadeElements = document.querySelectorAll('.fade-in-slide-up');
+    fadeElements.forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Initialize animations when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFadeInAnimations);
+  } else {
+    initFadeInAnimations();
+  }
+</script>
+
+<style>
+  /* Fade in slide up animation */
+  .fade-in-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in-slide-up.animate-fade-in-slide-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered animation delays */
+  .fade-in-slide-up:nth-child(1) { animation-delay: 0s; }
+  .fade-in-slide-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in-slide-up:nth-child(3) { animation-delay: 0.4s; }
+  .fade-in-slide-up:nth-child(4) { animation-delay: 0.6s; }
+  .fade-in-slide-up:nth-child(5) { animation-delay: 0.8s; }
+</style>
