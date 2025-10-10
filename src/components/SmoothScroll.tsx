@@ -20,11 +20,6 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     `;
     document.head.appendChild(style);
 
-    // Section-based smooth scrolling like navbar
-    let isScrolling = false;
-    let scrollTimeout: NodeJS.Timeout;
-    let lastScrollTime = 0;
-    let scrollAccumulator = 0;
     const sections = ['hero', 'about', 'featured', 'contract', 'team', 'contact'];
 
     const getCurrentSection = () => {
@@ -81,77 +76,12 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       return currentSection || 'hero';
     };
 
-    const scrollToSection = (sectionId: string, direction: 'up' | 'down') => {
-      const currentSection = getCurrentSection();
-      const currentIndex = sections.indexOf(currentSection);
-      let targetIndex = currentIndex;
-      
-      // Only move one section at a time
-      if (direction === 'down') {
-        targetIndex = Math.min(currentIndex + 1, sections.length - 1);
-      } else {
-        targetIndex = Math.max(currentIndex - 1, 0);
-      }
-      
-      // Prevent scrolling if already at the target section
-      if (targetIndex === currentIndex) {
-        return;
-      }
-      
-      const targetSection = sections[targetIndex];
-      const targetElement = document.getElementById(targetSection);
-      
-      if (targetElement) {
-        // Use the same offset logic as navbar
-        const offset = targetSection === 'contact' ? 0 : 80;
-        const targetPosition = targetElement.offsetTop - offset;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
-    };
+    // Smooth scroll functionality is now handled by the navbar component
+    // This component only provides basic smooth scroll behavior
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      
-      const now = Date.now();
-      const delta = e.deltaY;
-      
-      // Reset accumulator if too much time has passed
-      if (now - lastScrollTime > 200) {
-        scrollAccumulator = 0;
-      }
-      
-      // Accumulate scroll delta
-      scrollAccumulator += delta;
-      lastScrollTime = now;
-      
-      // Only trigger if we have enough scroll accumulation and not currently scrolling
-      if (Math.abs(scrollAccumulator) > 50 && !isScrolling) {
-        isScrolling = true;
-        clearTimeout(scrollTimeout);
-        
-        const direction = scrollAccumulator > 0 ? 'down' : 'up';
-        
-        // Scroll to next/previous section like navbar
-        scrollToSection('', direction);
-        
-        // Reset accumulator
-        scrollAccumulator = 0;
-        
-        scrollTimeout = setTimeout(() => {
-          isScrolling = false;
-        }, 800); // Longer timeout to prevent rapid scrolling
-      }
-    };
-
-    // Add wheel event listener
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    // Mouse wheel scrolling is disabled - users can scroll normally
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
       if (document.head.contains(style)) {
         document.head.removeChild(style);
       }
