@@ -244,25 +244,71 @@
       link.classList.remove('bg-fresh-green', 'text-white', 'shadow-lg');
     });
     
-    // Find the current section
+    // Find the current section using Intersection Observer approach
     let currentSection = '';
-    const scrollPosition = window.scrollY + 100; // Offset for better detection
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
     
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        const elementTop = rect.top + window.scrollY;
-        const elementBottom = elementTop + rect.height;
-        
-        if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
-          currentSection = section;
-          break;
+    // Check if we're at the very bottom (for contact section)
+    const isAtBottom = (scrollPosition + windowHeight) >= (documentHeight - 10);
+    
+    // If at bottom, highlight contact
+    if (isAtBottom) {
+      currentSection = 'contact';
+    } else {
+      // Check each section to see which one is most visible
+      let bestSection = '';
+      let bestVisibility = 0;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top;
+          const elementBottom = rect.bottom;
+          const elementHeight = rect.height;
+          
+          // Calculate how much of the section is visible
+          let visibleHeight = 0;
+          
+          if (elementTop >= 0 && elementBottom <= windowHeight) {
+            // Section is fully visible
+            visibleHeight = elementHeight;
+          } else if (elementTop < 0 && elementBottom > 0) {
+            // Section is partially visible from top
+            visibleHeight = elementBottom;
+          } else if (elementTop < windowHeight && elementBottom > windowHeight) {
+            // Section is partially visible from bottom
+            visibleHeight = windowHeight - elementTop;
+          } else if (elementTop >= 0 && elementTop < windowHeight) {
+            // Section starts in viewport
+            visibleHeight = Math.min(elementHeight, windowHeight - elementTop);
+          }
+          
+          // Calculate visibility percentage
+          const visibilityPercentage = visibleHeight / elementHeight;
+          
+          // If this section has better visibility, make it the current section
+          if (visibilityPercentage > bestVisibility) {
+            bestVisibility = visibilityPercentage;
+            bestSection = section;
+          }
+          
+          // Also check if section is in the top half of viewport (for better UX)
+          if (elementTop <= windowHeight / 2 && elementBottom > 0) {
+            currentSection = section;
+          }
         }
+      }
+      
+      // If no section is in the top half, use the best visible section
+      if (!currentSection && bestSection) {
+        currentSection = bestSection;
       }
     }
     
-    // If no section is found, default to hero
+    // Fallback to hero if no section is found
     if (!currentSection) {
       currentSection = 'hero';
     }
@@ -305,7 +351,8 @@
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
-          const offset = 80; // 80px offset for all sections
+          // No offset for contact section, 80px offset for other sections
+          const offset = targetId === '#contact' ? 0 : 80;
           const targetPosition = targetElement.offsetTop - offset;
           
           window.scrollTo({
