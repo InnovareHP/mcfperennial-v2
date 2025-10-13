@@ -8,7 +8,10 @@
       <!-- Logo -->
       <div class="flex-shrink-0">
         <a href="#" id="logo-link" class="flex items-center focus:outline-none">
-          <img id="navbar-logo" src="/images/logos/logo-light.png" alt="Company Logo" class="h-8 sm:h-10 md:h-12 lg:h-16 w-auto transition-all duration-150" />
+          <!-- Mobile/Tablet Logo (visible on mobile and tablet) -->
+          <img id="navbar-logo-mobile" src="/images/logos/mobile-logo.png" alt="Company Logo" class="h-16 md:h-16 lg:hidden w-auto transition-all duration-150" />
+          <!-- Desktop Logo (visible on desktop) -->
+          <img id="navbar-logo-desktop" src="/images/logos/logo-light.png" alt="Company Logo" class="hidden lg:block h-16 xl:h-20 w-auto transition-all duration-150" />
         </a>
       </div>
       
@@ -183,7 +186,8 @@
     const navbar = document.getElementById('navbar');
     const navLinks = navbar.querySelectorAll('a[href^="#"]');
     const mobileButton = navbar.querySelector('#mobile-menu-button');
-    const navbarLogo = document.getElementById('navbar-logo');
+    const navbarLogoMobile = document.getElementById('navbar-logo-mobile');
+    const navbarLogoDesktop = document.getElementById('navbar-logo-desktop');
     const scrolled = window.scrollY > 50;
     
     // Update active section based on scroll position
@@ -194,12 +198,17 @@
       navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-natural');
       navbar.classList.remove('bg-transparent');
       
-      // Switch to regular logo when scrolled and make it larger
-      if (navbarLogo) {
-        navbarLogo.src = '/images/logos/logo.png';
-        // Make logo larger when scrolled with responsive sizing
-        navbarLogo.classList.remove('h-8', 'sm:h-10', 'md:h-12', 'lg:h-16');
-        navbarLogo.classList.add('h-12', 'sm:h-14', 'md:h-16', 'lg:h-20');
+      // Switch to regular logos when scrolled - keep mobile logo same size
+      if (navbarLogoMobile) {
+        navbarLogoMobile.src = '/images/logos/mobile-logo.png';
+        // Keep mobile logo the same size when scrolled
+        // No size changes for mobile/tablet logo
+      }
+      if (navbarLogoDesktop) {
+        navbarLogoDesktop.src = '/images/logos/logo.png';
+        // Make desktop logo larger when scrolled
+        navbarLogoDesktop.classList.remove('h-16', 'xl:h-20');
+        navbarLogoDesktop.classList.add('h-20', 'xl:h-24');
       }
       
       // Update navigation links for scrolled state
@@ -218,11 +227,16 @@
       navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-natural');
       navbar.classList.add('bg-transparent');
       
-      // Switch to light logo when at top and make it smaller
-      if (navbarLogo) {
-        navbarLogo.src = '/images/logos/logo-light.png';
-        navbarLogo.classList.remove('h-12', 'sm:h-14', 'md:h-16', 'lg:h-20');
-        navbarLogo.classList.add('h-8', 'sm:h-10', 'md:h-12', 'lg:h-16');
+      // Switch to light logos when at top - keep mobile logo same size
+      if (navbarLogoMobile) {
+        navbarLogoMobile.src = '/images/logos/mobile-logo.png';
+        // Keep mobile logo the same size when not scrolled
+        // No size changes for mobile/tablet logo
+      }
+      if (navbarLogoDesktop) {
+        navbarLogoDesktop.src = '/images/logos/logo-light.png';
+        navbarLogoDesktop.classList.remove('h-20', 'xl:h-24');
+        navbarLogoDesktop.classList.add('h-16', 'xl:h-20');
       }
       
       // Update navigation links for transparent state
