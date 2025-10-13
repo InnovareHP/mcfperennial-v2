@@ -377,8 +377,8 @@
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
-          // No offset for contact section, 80px offset for other sections
-          const offset = targetId === '#contact' ? 0 : 80;
+          // 80px offset for all sections to account for navbar
+          const offset = 80;
           const targetPosition = targetElement.offsetTop - offset;
           
           window.scrollTo({

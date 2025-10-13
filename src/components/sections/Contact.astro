@@ -1,6 +1,6 @@
 ---
 // Contact Us Section Component
-import { MapPin, Phone, Facebook, Send } from 'lucide-react';
+import { MapPin, Phone, Facebook } from 'lucide-react';
 ---
 
 <section id="contact" class="py-20 bg-gradient-to-br from-sage-light to-cream-light">
@@ -92,88 +92,19 @@ import { MapPin, Phone, Facebook, Send } from 'lucide-react';
       <div class="fade-in-slide-up flex flex-col" style="animation-delay: 0.8s;">
         <div class="bg-white rounded-lg shadow-lg p-8 border border-sage-light flex-1 flex flex-col">
           <h4 class="text-2xl font-bold text-forest-dark mb-6">Send Us a Message</h4>
-          <form class="space-y-6 flex-1 flex flex-col">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <label for="firstName" class="block text-sm font-medium text-forest-dark mb-2">First Name</label>
-                <input 
-                  type="text" 
-                  id="firstName" 
-                  name="firstName"
-                  class="w-full px-4 py-3 border border-sage-light rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition-colors"
-                  placeholder="Your first name"
-                />
-              </div>
-              <div>
-                <label for="lastName" class="block text-sm font-medium text-forest-dark mb-2">Last Name</label>
-                <input 
-                  type="text" 
-                  id="lastName" 
-                  name="lastName"
-                  class="w-full px-4 py-3 border border-sage-light rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition-colors"
-                  placeholder="Your last name"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <label for="email" class="block text-sm font-medium text-forest-dark mb-2">Email Address</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email"
-                class="w-full px-4 py-3 border border-sage-light rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition-colors"
-                placeholder="your.email@example.com"
-              />
-            </div>
-            
-            <div>
-              <label for="phone" class="block text-sm font-medium text-forest-dark mb-2">Phone Number</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone"
-                class="w-full px-4 py-3 border border-sage-light rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition-colors"
-                placeholder="(616) 555-0123"
-              />
-            </div>
-            
-            <div>
-              <label for="businessType" class="block text-sm font-medium text-forest-dark mb-2">Business Type</label>
-              <select 
-                id="businessType" 
-                name="businessType"
-                class="w-full px-4 py-3 border border-sage-light rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition-colors"
-              >
-                <option value="">Select your business type</option>
-                <option value="landscape-contractor">Landscape Contractor</option>
-                <option value="wholesale-reseller">Wholesale Reseller</option>
-                <option value="garden-store">Garden Store Retailer</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div class="flex-1 flex flex-col">
-              <label for="message" class="block text-sm font-medium text-forest-dark mb-2">Message</label>
-              <textarea 
-                id="message" 
-                name="message"
-                rows="4"
-                class="w-full px-4 py-3 border border-sage-light rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition-colors resize-none flex-1"
-                placeholder="Tell us about your project or how we can help you..."
-              ></textarea>
-            </div>
-            
-            <button 
-              type="submit"
-              class="w-full bg-fresh-green hover:bg-forest-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-fresh-green focus:ring-offset-2 cursor-pointer group mt-auto"
+          <div class="flex-1 flex flex-col">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLScp2DuBEZEyvekSx0A7D25FOoX5Z5HYzSbGgieiIMlnYlVEuA/viewform?embedded=true" 
+              width="100%" 
+              height="853" 
+              frameborder="0" 
+              marginheight="0" 
+              marginwidth="0"
+              class="rounded-lg border border-sage-light"
             >
-              <span class="flex items-center justify-center">
-                <span>Send Message</span>
-                <Send class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </button>
-          </form>
+              Loading…
+            </iframe>
+          </div>
         </div>
       </div>
     </div>
