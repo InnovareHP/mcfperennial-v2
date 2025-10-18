@@ -1,0 +1,253 @@
+---
+// Seasonal Planters Section Component
+---
+
+<section id="seasonal" class="py-24 bg-gradient-to-b from-white to-sage-light/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h3 class="text-4xl md:text-5xl font-bold text-forest-dark mb-8 fade-in-slide-up" style="animation-delay: 0.2s;">
+        Seasonal Highlights
+      </h3>
+    </div>
+
+    <!-- Plants Carousel -->
+    <div class="relative max-w-3xl mx-auto fade-in-slide-up" style="animation-delay: 0.4s;">
+      <div id="seasonal-carousel" class="relative overflow-hidden rounded-2xl shadow-2xl">
+        
+        <!-- Plant Card 1 -->
+        <div class="seasonal-card active">
+          <div class="group relative overflow-hidden">
+            <div class="relative h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden">
+              <img src="/images/seasonal/seasonal-1.jpg" alt="Seasonal Plant" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plant Card 2 -->
+        <div class="seasonal-card">
+          <div class="group relative overflow-hidden">
+            <div class="relative h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden">
+              <img src="/images/seasonal/seasonal-2.jpg" alt="Seasonal Plant" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plant Card 3 -->
+        <div class="seasonal-card">
+          <div class="group relative overflow-hidden">
+            <div class="relative h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden">
+              <img src="/images/seasonal/seasonal-3.jpg" alt="Seasonal Plant" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Arrows - Hidden on mobile/tablet -->
+      <button id="seasonal-prev" class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-20 text-forest-dark/30 hover:text-fresh-green transition-all duration-300 cursor-pointer hover:scale-110">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      
+      <button id="seasonal-next" class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-20 z-20 text-forest-dark/30 hover:text-fresh-green transition-all duration-300 cursor-pointer hover:scale-110">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+
+      <!-- Pagination Dots -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <button class="seasonal-dot active w-2 h-2 rounded-full bg-white transition-all duration-300 shadow-lg"></button>
+        <button class="seasonal-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300"></button>
+        <button class="seasonal-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300"></button>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="text-center mt-16 fade-in-slide-up" style="animation-delay: 0.6s;">
+      <p class="text-xl text-forest-dark/80 max-w-3xl mx-auto">
+        Set the vibe. Define your space with Mill Creek Farm seasonal planters. We are booking now—DM to lock in your spot!
+      </p>
+    </div>
+  </div>
+</section>
+<script>
+  // Seasonal Carousel Functionality
+  let currentCard = 0;
+  const cards = document.querySelectorAll('.seasonal-card');
+  const dots = document.querySelectorAll('.seasonal-dot');
+  const prevBtn = document.getElementById('seasonal-prev');
+  const nextBtn = document.getElementById('seasonal-next');
+  
+  function showCard(index) {
+    // Hide all cards
+    cards.forEach(card => card.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    // Show current card
+    if (cards[index]) {
+      cards[index].classList.add('active');
+    }
+    if (dots[index]) {
+      dots[index].classList.add('active');
+      // Update dot styling
+      dots[index].classList.remove('bg-white/40', 'hover:bg-white/60');
+      dots[index].classList.add('bg-white', 'shadow-lg');
+    }
+    
+    // Update other dots
+    dots.forEach((dot, i) => {
+      if (i !== index) {
+        dot.classList.remove('bg-white', 'shadow-lg');
+        dot.classList.add('bg-white/40', 'hover:bg-white/60');
+      }
+    });
+    
+    currentCard = index;
+  }
+
+  function nextCard() {
+    const next = (currentCard + 1) % cards.length;
+    showCard(next);
+  }
+
+  function prevCard() {
+    const prev = (currentCard - 1 + cards.length) % cards.length;
+    showCard(prev);
+  }
+
+  // Event Listeners
+  if (nextBtn) {
+    nextBtn.addEventListener('click', nextCard);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', prevCard);
+  }
+
+  // Pagination dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      showCard(index);
+    });
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const seasonalSection = document.getElementById('seasonal');
+    if (seasonalSection) {
+      const rect = seasonalSection.getBoundingClientRect();
+      const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
+      
+      if (isInView) {
+        if (e.key === 'ArrowLeft') {
+          prevCard();
+        } else if (e.key === 'ArrowRight') {
+          nextCard();
+        }
+      }
+    }
+  });
+
+  // Touch gesture support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  const carousel = document.getElementById('seasonal-carousel');
+  if (carousel) {
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const swipeDistance = touchStartX - touchEndX;
+    
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        nextCard();
+      } else {
+        prevCard();
+      }
+    }
+  }
+
+  // Initialize carousel
+  showCard(0);
+
+  // Intersection Observer for fade-in animations
+  function initFadeInAnimations() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-slide-up');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    const fadeElements = document.querySelectorAll('#seasonal .fade-in-slide-up');
+    fadeElements.forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Initialize animations
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFadeInAnimations);
+  } else {
+    initFadeInAnimations();
+  }
+</script>
+
+<style>
+  /* Fade in slide up animation */
+  .fade-in-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in-slide-up.animate-fade-in-slide-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .seasonal-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    pointer-events: none;
+  }
+
+  .seasonal-card.active {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .seasonal-dot.active {
+    transform: scale(1.3);
+  }
+</style>
+
+
