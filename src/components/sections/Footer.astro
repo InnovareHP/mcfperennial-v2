@@ -1,0 +1,99 @@
+---
+// Footer Section Component
+import { MapPin, Phone, Facebook } from 'lucide-react';
+---
+
+<!-- Footer Section -->
+<footer class="bg-forest-dark text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Main Footer Content -->
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <!-- Logo and Brand -->
+      <div class="text-center md:text-left">
+        <div class="flex justify-center md:justify-start mb-4">
+          <img 
+            src="/images/logos/logo-light.png" 
+            alt="Mill Creek Farm Perennials Logo" 
+            class="h-12 w-auto"
+          />
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2">
+          Mill Creek Farm Perennials
+        </h3>
+        <p class="text-white/70 text-sm">
+          We Grow With You!
+        </p>
+      </div>
+      
+      <!-- Contact Info -->
+      <div class="text-center md:text-left">
+        <h4 class="text-sm font-semibold text-fresh-green mb-3 uppercase tracking-wide">Contact</h4>
+        <div class="space-y-2 text-sm text-white/80">
+          <p>4221 Bud Drive NE</p>
+          <p>Comstock Park, MI 49321</p>
+           <p>
+             <a href="tel:+16168624331" class="text-fresh-green hover:text-white transition-colors cursor-pointer">
+               (616) 862-4331
+             </a>
+           </p>
+        </div>
+      </div>
+      
+      <!-- Social -->
+      <div class="text-center md:text-left">
+        <h4 class="text-sm font-semibold text-fresh-green mb-3 uppercase tracking-wide">Follow Us</h4>
+        <div class="flex justify-center md:justify-start space-x-3">
+           <a 
+             href="https://www.facebook.com/mcfperennials" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-fresh-green text-white hover:text-white rounded-lg transition-all duration-300 cursor-pointer"
+             aria-label="Visit our Facebook page"
+           >
+             <Facebook class="w-5 h-5" />
+           </a>
+           <a 
+             href="https://maps.google.com/?q=4221+Bud+Drive+NE,+Comstock+Park,+MI+49321" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-fresh-green text-white hover:text-white rounded-lg transition-all duration-300 cursor-pointer"
+             aria-label="Find us on Google Maps"
+           >
+             <MapPin class="w-5 h-5" />
+           </a>
+        </div>
+        <div class="mt-3 space-y-1">
+          <a 
+            href="https://www.facebook.com/mcfperennials" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block text-white/70 hover:text-fresh-green text-sm transition-colors cursor-pointer"
+          >
+            Facebook Page
+          </a>
+          <a 
+            href="https://maps.google.com/?q=4221+Bud+Drive+NE,+Comstock+Park,+MI+49321" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block text-white/70 hover:text-fresh-green text-sm transition-colors cursor-pointer"
+          >
+            Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10 pt-6">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+        <p class="text-white/60 text-sm">
+          © 2024 Mill Creek Farm Perennials. All rights reserved.
+        </p>
+        <p class="text-white/60 text-sm">
+          Powered by Innovare HP
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
