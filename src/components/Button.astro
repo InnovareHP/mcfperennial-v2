@@ -1,19 +1,24 @@
 ---
-// Click button, get confetti!
-// Styled by Tailwind :)
+// Reusable Button Component
+interface Props {
+  href: string;
+  text: string;
+  variant?: 'primary' | 'secondary';
+  showArrow?: boolean;
+}
+
+const { href, text, variant = 'primary', showArrow = true } = Astro.props;
+
+const buttonClasses = variant === 'primary'
+  ? 'group inline-flex items-center justify-center bg-fresh-green hover:bg-forest-dark text-white font-bold py-4 px-10 rounded-full transition-all duration-500 transform hover:scale-110 hover:shadow-2xl cursor-pointer border-2 border-fresh-green hover:border-forest-dark shadow-lg hover:shadow-green-500/25'
+  : 'group inline-flex items-center justify-center bg-forest-dark hover:bg-fresh-green text-white font-bold py-4 px-10 rounded-full transition-all duration-500 transform hover:scale-110 hover:shadow-2xl cursor-pointer border-2 border-forest-dark hover:border-fresh-green shadow-lg';
 ---
 
-<button
-	class="appearance-none py-2 px-4 bg-purple-500 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
->
-	<slot />
-</button>
-
-<script>
-	import confetti from 'canvas-confetti';
-	const button = document.body.querySelector('button');
-
-	if (button) {
-		button.addEventListener('click', () => confetti());
-	}
-</script>
+<a href={href} class={buttonClasses}>
+  <span class="relative z-10">{text}</span>
+  {showArrow && (
+    <svg class="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+    </svg>
+  )}
+</a>
