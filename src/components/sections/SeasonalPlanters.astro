@@ -1,5 +1,6 @@
 ---
 // Seasonal Planters Section Component
+import Button from '../Button.astro';
 ---
 
 <section id="seasonal" class="py-24 bg-gradient-to-b from-white to-sage-light/20">
@@ -69,10 +70,21 @@
     </div>
 
     <!-- Message -->
-    <div class="text-center mt-16 fade-in-slide-up" style="animation-delay: 0.6s;">
-      <p class="text-xl text-forest-dark/80 max-w-3xl mx-auto">
+    <div class="text-center mt-16 max-w-4xl mx-auto fade-in-slide-up" style="animation-delay: 0.6s;">
+      <h3 class="text-3xl md:text-4xl font-bold text-forest-dark mb-6">
         Set the vibe. Define your space with Mill Creek Farm seasonal planters.
+      </h3>
+      <p class="text-lg leading-relaxed text-forest-dark/80">
+        From elegant entrances to cozy patios, our handcrafted planters bring color, texture, and life to every corner. Each design is grown and arranged with care—ready to transform your space into something truly inviting.
       </p>
+      <p class="text-lg leading-relaxed text-forest-dark/80 mt-4">
+        👉 Order your custom seasonal planters today and let nature do the talking.
+      </p>
+      
+      <!-- CTA Button -->
+      <div class="text-center mt-8">
+        <Button href="#contact" text="Grow With Us" />
+      </div>
     </div>
   </div>
 </section>

@@ -1,5 +1,6 @@
 ---
 // About Section Component
+import Button from '../Button.astro';
 ---
 
 <section id="about" class="py-20 bg-amber-50">
@@ -10,19 +11,33 @@
       </h3>
     </div>
     
+    <!-- About Image -->
+    <div class="max-w-5xl mx-auto mb-12 fade-in-slide-up" style="animation-delay: 0.3s;">
+      <img 
+        src="/images/about/about.jpg" 
+        alt="Mill Creek Farm Perennials" 
+        class="w-full h-auto rounded-lg shadow-lg"
+      />
+    </div>
+    
     <div class="max-w-4xl mx-auto">
-      <div class="space-y-6 text-forest-dark text-justify">
-        <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.4s;">
+      <div class="space-y-6 text-left lg:text-justify">
+        <p class="text-lg leading-relaxed text-forest-dark/80 fade-in-slide-up" style="animation-delay: 0.4s;">
           With over 30 years of experienced nursery production, we are able to offer our landscape contractors in Grand Rapids and nearby cities in West Michigan the opportunity to take part in our contract grow program.
         </p>
         
-        <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.6s;">
+        <p class="text-lg leading-relaxed text-forest-dark/80 fade-in-slide-up" style="animation-delay: 0.6s;">
           Ground covers continue to prove to be some of our most popular inventories year after year. Because of it, we have increased our inventories and improved our nursery growing capabilities. We have also upgraded our facilities with the addition of two heated greenhouses on top of the four we already have. Two shrub cold frames were also built as part of the expansion plan bringing it to a total of seventeen.
         </p>
         
-        <p class="text-lg leading-relaxed fade-in-slide-up" style="animation-delay: 0.8s;">
+        <p class="text-lg leading-relaxed text-forest-dark/80 fade-in-slide-up" style="animation-delay: 0.8s;">
           Whether you're a landscape contractor, a wholesale reseller or a garden store retailer, we would love to partner with you. We have a wide variety of selection to support your growing business needs.
         </p>
+      </div>
+      
+      <!-- CTA Button -->
+      <div class="text-center mt-10 fade-in-slide-up" style="animation-delay: 1s;">
+        <Button href="#contact" text="Grow With Us" />
       </div>
     </div>
   </div>
