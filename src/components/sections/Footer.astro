@@ -14,14 +14,11 @@ import { MapPin, Phone, Facebook } from 'lucide-react';
           <img 
             src="/images/logos/logo-light.png" 
             alt="Mill Creek Farm Perennials Logo" 
-            class="h-12 w-auto"
+            class="h-25 w-auto"
           />
         </div>
-        <h3 class="text-lg font-semibold text-white mb-2">
-          Mill Creek Farm Perennials
-        </h3>
         <p class="text-white/70 text-sm">
-          We Grow With You!
+          We grow with you!
         </p>
       </div>
       
@@ -69,7 +66,6 @@ import { MapPin, Phone, Facebook } from 'lucide-react';
             rel="noopener noreferrer"
             class="block text-white/70 hover:text-fresh-green text-sm transition-colors cursor-pointer"
           >
-            Facebook Page
           </a>
           <a 
             href="https://maps.google.com/?q=4221+Bud+Drive+NE,+Comstock+Park,+MI+49321" 
@@ -77,7 +73,6 @@ import { MapPin, Phone, Facebook } from 'lucide-react';
             rel="noopener noreferrer"
             class="block text-white/70 hover:text-fresh-green text-sm transition-colors cursor-pointer"
           >
-            Google Maps
           </a>
         </div>
       </div>
@@ -87,7 +82,7 @@ import { MapPin, Phone, Facebook } from 'lucide-react';
     <div class="border-t border-white/10 pt-6">
       <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
         <p class="text-white/60 text-sm">
-          © 2024 Mill Creek Farm Perennials. All rights reserved.
+          © <span id="copyright-year"></span> Mill Creek Farm Perennials. All rights reserved.
         </p>
         <p class="text-white/60 text-sm">
           Powered by <a 
@@ -103,4 +98,12 @@ import { MapPin, Phone, Facebook } from 'lucide-react';
     </div>
   </div>
 </footer>
+
+<script>
+  // Automatically update copyright year
+  const yearElement = document.getElementById('copyright-year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+</script>
 
