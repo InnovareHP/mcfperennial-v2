@@ -39,7 +39,7 @@
             <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
           <a href="#contract" class="nav-link text-white hover:text-fresh-green px-6 py-3 text-base font-medium transition-all duration-300 relative group cursor-pointer">
-            <span class="relative z-10">Contract</span>
+            <span class="relative z-10">Contract Grow Program</span>
             <div class="absolute inset-0 bg-fresh-green/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-fresh-green transition-all duration-300 group-hover:w-8"></div>
           </a>
@@ -76,12 +76,12 @@
     </div>
     
     <!-- Mobile menu - Full Screen with Green Gradient -->
-    <div id="mobile-menu" class="md:hidden hidden fixed inset-0 z-50 mobile-menu-overlay">
+    <div id="mobile-menu" class="md:hidden hidden fixed inset-0 z-[9999] mobile-menu-overlay">
       <!-- Green Gradient Background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 w-full h-full z-0" style="opacity: 1;"></div>
       
       <!-- Content Container -->
-      <div class="relative h-full flex flex-col px-8 pt-8 pb-8">
+      <div class="relative h-full flex flex-col px-8 pt-8 pb-8 z-10">
         <!-- Header with Logo and Close Button -->
         <div class="flex items-center justify-between mb-12">
           <!-- Empty space for alignment -->
@@ -144,7 +144,7 @@
           <div class="h-px bg-white/10"></div>
           
           <a href="#contract" class="mobile-nav-link group flex items-center justify-between px-6 py-4 text-white text-xl font-medium transition-all duration-300 cursor-pointer">
-            <span class="relative">Contract</span>
+            <span class="relative">Contract Grow Program</span>
             <svg class="w-6 h-6 text-white/60 group-hover:text-white group-hover:translate-x-2 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
@@ -181,42 +181,113 @@
     const closeIcon = document.getElementById('close-icon');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     
+    let isMenuOpen = false;
+    let isAnimating = false;
+    
     if (mobileMenuButton && mobileMenu) {
+      // Function to reset menu items to initial state
+      function resetMenuItems() {
+        const menuItems = mobileMenu.querySelectorAll('.mobile-nav-link');
+        menuItems.forEach((item) => {
+          // Remove all inline styles
+          item.style.cssText = '';
+          // Reset to initial CSS state
+          item.style.opacity = '0';
+          item.style.transform = 'translateX(-30px)';
+        });
+      }
+      
       // Function to show mobile menu
       function showMobileMenu() {
+        if (isAnimating || isMenuOpen) return;
+        isAnimating = true;
+        
+        // First, ensure menu is completely reset
+        resetMenuItems();
+        
+        // Ensure background is explicitly set and visible
+        const bgDiv = mobileMenu.querySelector('div:first-child');
+        if (bgDiv) {
+          bgDiv.style.cssText = 'position: absolute; inset: 0; width: 100%; height: 100%; background: linear-gradient(to bottom right, rgb(5, 150, 105), rgb(22, 163, 74), rgb(15, 118, 110)); opacity: 1; z-index: 0;';
+        }
+        
+        // Remove hidden class and show menu
         mobileMenu.classList.remove('hidden');
+        mobileMenu.style.display = 'block';
+        mobileMenu.style.opacity = '1';
+        mobileMenu.style.visibility = 'visible';
+        mobileMenu.style.backgroundColor = 'rgb(5, 150, 105)';
+        
         // Prevent body scroll when menu is open
         document.body.style.overflow = 'hidden';
         
-        // Animate menu entrance
-        setTimeout(() => {
-          mobileMenu.classList.add('menu-open');
-        }, 10);
-        
+        // Update button icons
         if (menuIcon) menuIcon.classList.add('hidden');
         if (closeIcon) closeIcon.classList.remove('hidden');
         mobileMenuButton.setAttribute('aria-expanded', 'true');
         
-        // Animate menu items
-        const menuItems = mobileMenu.querySelectorAll('.mobile-nav-link');
-        menuItems.forEach((item, index) => {
-          item.style.animation = `slideInLeft 0.5s ease-out ${index * 0.1}s forwards`;
+        // Force reflow
+        void mobileMenu.offsetWidth;
+        
+        // Animate menu entrance
+        requestAnimationFrame(() => {
+          mobileMenu.classList.add('menu-open');
+          
+          // Ensure background stays visible
+          if (bgDiv) {
+            bgDiv.style.opacity = '1';
+          }
+          
+          // Animate menu items after menu is visible
+          const menuItems = mobileMenu.querySelectorAll('.mobile-nav-link');
+          menuItems.forEach((item, index) => {
+            // Force reflow for each item
+            void item.offsetWidth;
+            // Apply animation
+            item.style.animation = `slideInLeft 0.5s ease-out ${index * 0.1}s forwards`;
+          });
+          
+          setTimeout(() => {
+            isAnimating = false;
+            isMenuOpen = true;
+          }, 100);
         });
       }
       
       // Function to hide mobile menu
       function hideMobileMenu() {
+        if (isAnimating || !isMenuOpen) return;
+        isAnimating = true;
+        
+        // Remove menu-open class to trigger exit animation
         mobileMenu.classList.remove('menu-open');
+        
         // Restore body scroll
         document.body.style.overflow = '';
         
-        setTimeout(() => {
-          mobileMenu.classList.add('hidden');
-        }, 300);
-        
+        // Update button icons
         if (menuIcon) menuIcon.classList.remove('hidden');
         if (closeIcon) closeIcon.classList.add('hidden');
         mobileMenuButton.setAttribute('aria-expanded', 'false');
+        
+        // Wait for animation to complete, then hide and reset
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.style.display = '';
+          
+          // Reset all menu items
+          resetMenuItems();
+          
+          // Clear inline styles after a brief delay
+          setTimeout(() => {
+            const menuItems = mobileMenu.querySelectorAll('.mobile-nav-link');
+            menuItems.forEach((item) => {
+              item.style.cssText = '';
+            });
+            isAnimating = false;
+            isMenuOpen = false;
+          }, 50);
+        }, 300);
       }
       
       // Toggle mobile menu on button click
@@ -224,12 +295,10 @@
         e.preventDefault();
         e.stopPropagation();
         
-        const isHidden = mobileMenu.classList.contains('hidden');
-        
-        if (isHidden) {
-          showMobileMenu();
-        } else {
+        if (isMenuOpen) {
           hideMobileMenu();
+        } else {
+          showMobileMenu();
         }
       });
       
@@ -244,14 +313,22 @@
       
       // Close mobile menu when clicking on a link
       mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function(e) {
+          // Close menu immediately when link is clicked
           hideMobileMenu();
         });
       });
       
       // Close mobile menu on escape key
       document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        if (event.key === 'Escape' && isMenuOpen) {
+          hideMobileMenu();
+        }
+      });
+      
+      // Close menu when clicking outside (on the overlay background)
+      mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu || e.target.classList.contains('mobile-menu-overlay')) {
           hideMobileMenu();
         }
       });
@@ -425,8 +502,18 @@
     
     // Close mobile menu on larger screens
     if (window.innerWidth >= 768) { // md breakpoint
-      if (mobileMenu) {
+      if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('menu-open');
         mobileMenu.classList.add('hidden');
+        mobileMenu.style.display = '';
+        document.body.style.overflow = '';
+        
+        // Reset menu item animations
+        const menuItems = mobileMenu.querySelectorAll('.mobile-nav-link');
+        menuItems.forEach((item) => {
+          item.style.cssText = '';
+        });
+        
         if (menuIcon) menuIcon.classList.remove('hidden');
         if (closeIcon) closeIcon.classList.add('hidden');
         if (mobileMenuButton) mobileMenuButton.setAttribute('aria-expanded', 'false');
@@ -571,13 +658,49 @@
   /* Mobile Menu Full Screen Styles */
   .mobile-menu-overlay {
     opacity: 0;
+    visibility: hidden;
     transform: translateX(100%);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgb(5, 150, 105) !important; /* Fallback solid green background */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s 0.3s;
+  }
+
+  .mobile-menu-overlay.menu-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(0) !important;
+    background-color: rgb(5, 150, 105) !important; /* Ensure solid background when open */
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s 0s;
   }
   
-  .mobile-menu-overlay.menu-open {
-    opacity: 1;
-    transform: translateX(0);
+  /* Ensure background gradient is always fully opaque and covers everything */
+  .mobile-menu-overlay > div:first-child {
+    opacity: 1 !important;
+    z-index: 0 !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(to bottom right, rgb(5, 150, 105), rgb(22, 163, 74), rgb(15, 118, 110)) !important;
+  }
+  
+  /* Ensure content is above background */
+  .mobile-menu-overlay > div:last-child {
+    position: relative !important;
+    z-index: 1 !important;
   }
   
   /* Mobile menu link animations */
@@ -587,6 +710,11 @@
     border-radius: 12px;
     position: relative;
     overflow: hidden;
+    color: white !important;
+  }
+  
+  .mobile-nav-link span {
+    color: white !important;
   }
   
   .mobile-nav-link::before {
